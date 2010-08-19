@@ -57,6 +57,10 @@ var thisPost;
 for (var i = 0; i < allPosts.snapshotLength; i++) {
     thisPost = allPosts.snapshotItem(i);
     postText = thisPost.innerHTML;
+    if (postText == '') {
+        // lzw_encode chokes on zero-lenght strings, skip iteration
+        continue;
+    }
     ratio = postText.length / lzw_encode(postText).length;
     if (ratio < 3) {
         // everything went better than expected
