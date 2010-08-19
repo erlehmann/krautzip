@@ -10,6 +10,11 @@
 // @include        http://krautchan.net/*
 // @include        http://krautchan.net/*/*
 // @include        http://krautchan.net/*/*/*
+// @include        http://krautchan.net/*/*/*/*
+// @include        http://www.krautchan.net/*
+// @include        http://www.krautchan.net/*/*
+// @include        http://www.krautchan.net/*/*/*
+// @include        http://www.krautchan.net/*/*/*/*
 // ==/UserScript==
 
 // the following function was taken from jsolait <http://jsolait.net/>
