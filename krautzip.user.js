@@ -45,26 +45,30 @@ function lzw_encode(s) {
     return out.join("");
 }
 
-var allPosts;
-allPosts = document.evaluate(
-    '//*[starts-with(@id, "post_text")]',
-    document,
-    null,
-    XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
-    null);
+function zip_all() {
+    var allPosts;
+    allPosts = document.evaluate(
+        '//*[starts-with(@id, "post_text")]',
+        document,
+        null,
+        XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
+        null);
 
-var thisPost;
-for (var i = 0; i < allPosts.snapshotLength; i++) {
-    thisPost = allPosts.snapshotItem(i);
-    postText = thisPost.innerHTML;
-    if (postText == '') {
-        // lzw_encode chokes on zero-lenght strings, skip iteration
-        continue;
-    }
-    ratio = postText.length / lzw_encode(postText).length;
-    if (ratio < 3) {
-        // everything went better than expected
-    } else {
-        thisPost.innerHTML = '<span style="color:#ff0000; font-weight: bold">(ZIP)</span>';
+    var thisPost;
+    for (var i = 0; i < allPosts.snapshotLength; i++) {
+        thisPost = allPosts.snapshotItem(i);
+        postText = thisPost.innerHTML;
+        if (postText == '') {
+            // lzw_encode chokes on zero-lenght strings, skip iteration
+            continue;
+        }
+        ratio = postText.length / lzw_encode(postText).length;
+        if (ratio < 3) {
+            // everything went better than expected
+        } else {
+            thisPost.innerHTML = '<span style="color:#ff0000; font-weight: bold">(ZIP)</span>';
+        }
     }
 }
+
+document.addEventListener("DOMContentLoaded", zip_all, false);
